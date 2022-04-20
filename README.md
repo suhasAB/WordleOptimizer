@@ -31,7 +31,7 @@ Equation of Entropy can be calculated using the formula:
 
 ![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
 
-## 4. Proposed Project Work Summary: 
+## 4. Proposed Project Work Summary
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses. We also plan on using supervised learning models to predict the possible words for guesses at each stage,based on entropy calculations at each guess. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
 
