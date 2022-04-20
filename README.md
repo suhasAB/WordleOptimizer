@@ -24,10 +24,15 @@ Equation of Entropy can be calculated using the formula:
 ## Proposed Project Work Summary: 
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses. We also plan on using supervised learning models to predict the possible words for guesses at each stage,based on entropy calculations at each guess. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
+
+Supervised learning (SL) is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples.
+Supervised learning works the best in this case as we constantly have to keep a track of entropy of each guesses and evaluate the information gain based on feedback between 2 layers of guessing patterns.
 Various Supervised learning options that can be applied to solve this problem statement:
 -- XGBoost
 -- Deep Neural Networks
 -- Reinforcement Learning
+
+
 
 ## Team Number:9
 ## Term : Spring 2022
