@@ -1,11 +1,12 @@
 # WordleOptimizer
-## Problem Statement: <br/> Analysing Wordle Game Strategies using Information Theory(Entropy based) and optimising predictions using supervised learning.
+## Problem Statement:
+## Analysing Wordle Game Strategies using Information Theory(Entropy based) and optimising predictions using supervised learning.
 
 ## Team Members:
-- Abhishek Reddy
-- Ayush Gupta
-- Suhas Anand Balagar
-- Milan Mohan Joshi
+- Abhishek Reddy (https://github.com/abhishekri)
+- Ayush Gupta (https://github.com/aygupta9800)
+- Suhas Anand Balagar (https://github.com/suhasAB)
+- Milan Mohan Joshi (https://github.com/Milan-Joshi)
 
 ## Dataset: Scraping for all possible words on Sources tab of website https://www.nytimes.com/games/wordle/index.html
 Dataset involves upto 10,000 Valid English words with 5 letters each.
