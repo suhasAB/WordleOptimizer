@@ -1,16 +1,19 @@
-# Project Title: Wordle Optimizer
+# 1. Project Title: Wordle Optimizer
 
+## Professor: Carlos Rojas
+## Term: Spring 2022
+## Team Number: 9
 ## Team Members:
 - Abhishek Reddy (https://github.com/abhishekri)
 - Ayush Gupta (https://github.com/aygupta9800)
 - Suhas Anand Balagar (https://github.com/suhasAB)
 - Milan Mohan Joshi (https://github.com/Milan-Joshi)
 
-## Dataset: 
-#### Scraping for all possible words on Sources tab of website https://www.nytimes.com/games/wordle/index.html
-#### Dataset involves upto 10,000 Valid English words with 5 letters each.
+## 2. Dataset: 
+- Scraping for all possible words on Sources tab of website https://www.nytimes.com/games/wordle/index.html
+- Dataset involves upto 10,000 Valid English words with 5 letters each.
 
-## Problem Statement: 
+## 3. Problem Statement: 
 ## Analysing Wordle Game Strategies using Information Theory (Entropy based) and optimising predictions using supervised learning.
 
 ## About Wordle game:
@@ -22,7 +25,7 @@ Equation of Entropy can be calculated using the formula:
 
 ![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
 
-## Proposed Project Work Summary: 
+## 4. Proposed Project Work Summary: 
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses. We also plan on using supervised learning models to predict the possible words for guesses at each stage,based on entropy calculations at each guess. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
 
@@ -33,9 +36,3 @@ Various Supervised learning options that can be applied to solve this problem st
 -- XGBoost
 -- Deep Neural Networks
 -- Reinforcement Learning
-
-
-
-## Team Number: 9
-## Term: Spring 2022
-## Professor: Carlos Rojas
