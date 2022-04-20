@@ -16,7 +16,7 @@ Spring 2022
 - Milan Mohan Joshi (https://github.com/Milan-Joshi)
 
 ## 2. What data you’ll use and where you’ll get it?
-- Scraping for all possible words on Sources tab of website https://www.nytimes.com/games/wordle/index.html
+- Scraping for all possible words on Sources tab of website (https://www.nytimes.com/games/wordle/index.html)
 - Dataset involves upto 10,000 Valid English words with 5 letters each.
 
 ## 3. Description of the problem you’ll solve or the question you’ll investigate.
