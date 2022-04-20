@@ -1,5 +1,6 @@
 # WordleOptimizer
-## Problem Statement: Analysing Wordle Game Strategies using Information Theory(Entropy based) and optimising predictions using supervised learning.
+## Problem Statement: 
+## Analysing Wordle Game Strategies using Information Theory(Entropy based) and optimising predictions using supervised learning.
 
 ## Team Members:
 - Abhishek Reddy
