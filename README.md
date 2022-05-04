@@ -52,7 +52,7 @@ Through this heatmap we can understand, that in curated word list, at pos 1, s h
 
 Broadly considering I plotted two visualizations. First is calculating the frequency of individual character, second is frequencies of characters in every slot of Wordle game. We considered three datasets to do this.
 
-Datasets
+**Datasets**
   1) Valid Guesses
   This is a list of 13,000 words from the source code dataset.
   
@@ -66,16 +66,20 @@ Datasets
 
 ![freq_slot-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_slot.png)
 
-1) Calculating Individual Character Frequency 
-I tried to analyze the frequency of different characters from all alphabets from A to Z. 
-a) Viable Wordle Guess
-Plotting the frequency of each character from the source dataset.
-b) Viable Wordle Solutions
-Analyzing each character frequency from the curated dataset list.
-c) Previous Wordle Solutions
-Similarly calculating the frequency of individual character based on previous wordle solutions.
+**1) Calculating Individual Character Frequency**
 
-2) Calculating Frequency of Characters in all the Five Slots
+  I tried to analyze the frequency of different characters from all alphabets from A to Z. 
+  
+  a) Viable Wordle Guess
+  Plotting the frequency of each character from the source dataset.
+  
+  b) Viable Wordle Solutions
+  Analyzing each character frequency from the curated dataset list.
+  
+  c) Previous Wordle Solutions
+  Similarly calculating the frequency of individual character based on previous wordle solutions.
+
+**2) Calculating Frequency of Characters in all the Five Slots**
 This is calculating the frequency of each character in different slots and also the combines frequency from the five slots.
 Similar to the calculations we did in the step 1), we are doing it for 3 datasets.
 
