@@ -94,12 +94,13 @@ Broadly considering I plotted two visualizations. First is calculating the frequ
   c) Previous Wordle Solutions
   Similarly calculating the frequency of individual character based on previous wordle solutions.
 
-![freq_slot-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_slot.png)
 
 **2) Calculating Frequency of Characters in all the Five Slots**
 
 This is calculating the frequency of each character in different slots and also the combines frequency from the five slots.
 Similar to the calculations we did in the step 1), we are doing it for 3 datasets.
+
+![freq_slot-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_slot.png)
 
 The whole idea is to optimize or reduce the number of tries or steps in playing game may be 3 or even less than that. To understand which dataset or even combined datasets to use, or on what frequency we should try to solve using entropy; we need to understand efficient possible ways of data sourcing.
 Combining frequencies from different datasets of each character will help us to assign a priority or weightage to individual alphabet.
