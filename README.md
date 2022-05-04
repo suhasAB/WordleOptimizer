@@ -32,13 +32,27 @@ Equation of Entropy can be calculated using the formula:
 ![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
 
 ## 4. Proposed Project Work Summary
-We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy og combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
+We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy of combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
-## 5. Introduction
+We plan to use this preprocessed data to come up with 3 strategies to minimize the number of guesses.
+1.Entropy based strategy(Reducing Possible words in each guess based on Entropy)
+2.Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+3.Naive Approach based on Regular Expression
 
-## 6. Methods:
+Average human takes somewhere around 3.8-4.2 guesses based on different stats(scrapped from social media). We will explore the above 3 strategies to  reduce the guessing score that is better than humans ,compare and evaluate them.
+![image](https://user-images.githubusercontent.com/20688701/166621754-7fdb7cba-bd50-4054-99f9-fb462174ebff.png)
 
-### 6.1. Heatmap for letter vs position in word:
+
+## Preliminary Analysis
+
+## 5. Methods:
+
+### 6.1. Data Extraction,Preprocessing and Curating Dataset:
+In this method, primary aim is to get a list of all possible wordle answers i.e. 5 letter English words along with  other curated and Most frequent subsets. We used web scraping on the wordle website’s source JavaScript code to extract the list of all possible answers(5 letter words). There were around 12972 words in the list, and it is saved in multiple formats (json, text, csv )for further processing. We also found a curated list of 2315 words which were hand selected the game founder’s wife. 
+We found a dataset from [Google books](http://norvig.com/google-books-common-words.txt) which maps the most common words in English language to it’s Frequency in Google books and other Online platforms.
+We filtered this dataset with just 5 letter words and arranged them in decreasing order of Frequency of words. We also normalized the frequency by dividing all frequencies with the maximum frequency to calculate and saved them in a new column called relative frequency.
+
+### 6.2. Heatmap for letter vs position in word:
 
 We tried to analyse the frequency of each letter at position from 1 to 5 in 5 letter all-words list and curated word list given by wordle creators.
 We calculated the total count at each position of letter and then calculated normalized frequency which would be from 0 to 1. Then we plot heatmap between alphabets and the position with color codes showing the frequency of letter. 
