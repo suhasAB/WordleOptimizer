@@ -38,7 +38,7 @@ We plan on analysing the game by exploring the trends and patterns in the 5 lett
 
 ## 6. Methods:
 
-1. Heatmap for letter vs position in word:
+### a. Heatmap for letter vs position in word:
 
 We tried to analyse the frequency of each letter at position from 1 to 5 in 5 letter all-words list and curated word list given by wordle creators.
 We calculated the total count at each position of letter and then calculated normalized frequency which would be from 0 to 1. Then we plot heatmap between alphabets and the position with color codes showing the frequency of letter. 
