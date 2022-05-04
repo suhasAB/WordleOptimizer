@@ -78,9 +78,8 @@ Broadly considering I plotted two visualizations. First is calculating the frequ
   3) Valid Solutions
   Contains a list of all words that have appeared each day as a solution.
 
-![fre_each-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each.png)
 
-![freq_slot-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_slot.png)
+![fre_each-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each.png)
 
 **1) Calculating Individual Character Frequency**
 
@@ -95,6 +94,7 @@ Broadly considering I plotted two visualizations. First is calculating the frequ
   c) Previous Wordle Solutions
   Similarly calculating the frequency of individual character based on previous wordle solutions.
 
+![freq_slot-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_slot.png)
 
 **2) Calculating Frequency of Characters in all the Five Slots**
 
