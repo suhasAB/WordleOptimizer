@@ -34,9 +34,11 @@ Equation of Entropy can be calculated using the formula:
 ## 4. Proposed Project Work Summary
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy of combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 We plan to use this preprocessed data to come up with 3 strategies to minimize the number of guesses.
-1.Entropy based strategy(Reducing Possible words in each guess based on Entropy)
-2.Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
-3.Naive Approach based on Regular Expression
+
+-- Entropy based strategy(Reducing Possible words in each guess based on Entropy)
+-- Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+-- Naive Approach based on Regular Expression.
+
 
 Average human takes somewhere between 3.8 based on different stats(scrapped from social media). We will explore the above 3 strategies to  reduce the guessing score that is better than humans ,compare and evaluate them.
 
