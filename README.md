@@ -32,27 +32,13 @@ Equation of Entropy can be calculated using the formula:
 ![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
 
 ## 4. Proposed Project Work Summary
-We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy of combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
+We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy og combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
-We plan to use this preprocessed data to come up with 3 strategies to minimize the number of guesses.
-1.Entropy based strategy(Reducing Possible words in each guess based on Entropy)
-2.Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
-3.Naive Approach based on Regular Expression
+## 5. Introduction
 
-Average human takes somewhere around 3.8-4.2 guesses based on different stats(scrapped from social media). We will explore the above 3 strategies to  reduce the guessing score that is better than humans ,compare and evaluate them.
-![image](https://user-images.githubusercontent.com/20688701/166621754-7fdb7cba-bd50-4054-99f9-fb462174ebff.png)
+## 6. Methods:
 
-
-## Preliminary Analysis
-
-## 5. Methods:
-
-### 6.1. Data Extraction,Preprocessing and Curating Dataset:
-In this method, primary aim is to get a list of all possible wordle answers i.e. 5 letter English words along with  other curated and Most frequent subsets. We used web scraping on the wordle website’s source JavaScript code to extract the list of all possible answers(5 letter words). There were around 12972 words in the list, and it is saved in multiple formats (json, text, csv )for further processing. We also found a curated list of 2315 words which were hand selected the game founder’s wife. 
-We found a dataset from [Google books](http://norvig.com/google-books-common-words.txt) which maps the most common words in English language to it’s Frequency in Google books and other Online platforms.
-We filtered this dataset with just 5 letter words and arranged them in decreasing order of Frequency of words. We also normalized the frequency by dividing all frequencies with the maximum frequency to calculate and saved them in a new column called relative frequency.
-
-### 6.2. Heatmap for letter vs position in word:
+### 6.1. Heatmap for letter vs position in word:
 
 We tried to analyse the frequency of each letter at position from 1 to 5 in 5 letter all-words list and curated word list given by wordle creators.
 We calculated the total count at each position of letter and then calculated normalized frequency which would be from 0 to 1. Then we plot heatmap between alphabets and the position with color codes showing the frequency of letter. 
@@ -60,6 +46,42 @@ We calculated the total count at each position of letter and then calculated nor
 ![Heatmap frequency vs position](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/heatmap-curated-words-freq-of-letter-per-pos.png)
 
 Through this heatmap we can understand, that in curated word list, at pos 1, s has the most no. of words. similarly at pos 5, e and y has most words. so trying a word starting with s and ending with e or y can be a good first guess to remove the possible words after the first guess. Thus improving our chance to get maximum entropy gain.  This visualization is done on curated words list of 2315 words as opposed to total 12,972 possible guesses in Wordle. We chose to focus only on the possible winning answers for the analysis because our goal is to find the best guesses for human player. While some might think, we are biasing toward only those words that can win, we have counter argument that all possible correct answer words are known beforehand, so using them is valid and good strategy toward reaching final answer.
+
+
+### 6.2. Frequency of Individual Characters as a Whole and in Different Wordle Slots
+
+Broadly considering I plotted two visualizations. First is calculating the frequency of individual character, second is frequencies of characters in every slot of Wordle game. We considered three datasets to do this.
+
+Datasets
+  1) Valid Guesses
+  This is a list of 13,000 words from the source code dataset.
+  
+  2) World Curated
+  It is a curated list of words around 2,000 words that appear to be most frequent suggested by cofounder’s spouse. 
+  
+  3) Valid Solutions
+  Contains a list of all words that have appeared each day as a solution.
+
+![fre_each-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each.png)
+
+![freq_slot-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_slot.png)
+
+1) Calculating Individual Character Frequency 
+I tried to analyze the frequency of different characters from all alphabets from A to Z. 
+a) Viable Wordle Guess
+Plotting the frequency of each character from the source dataset.
+b) Viable Wordle Solutions
+Analyzing each character frequency from the curated dataset list.
+c) Previous Wordle Solutions
+Similarly calculating the frequency of individual character based on previous wordle solutions.
+
+2) Calculating Frequency of Characters in all the Five Slots
+This is calculating the frequency of each character in different slots and also the combines frequency from the five slots.
+Similar to the calculations we did in the step 1), we are doing it for 3 datasets.
+
+The whole idea is to optimize or reduce the number of tries or steps in playing game may be 3 or even less than that. To understand which dataset or even combined datasets to use, or on what frequency we should try to solve using entropy; we need to understand efficient possible ways of data sourcing.
+Combining frequencies from different datasets of each character will help us to assign a priority or weightage to individual alphabet.
+
 
 ### 6.3. Frequency map for most common words found in books:
 
