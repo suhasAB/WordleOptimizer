@@ -5,7 +5,7 @@
 
 # ## Solving method
 
-# In[1]:
+# In[7]:
 
 
 import numpy as np
@@ -15,9 +15,10 @@ from tqdm.notebook import tqdm
 from collections import defaultdict
 import ipywidgets as widgets
 from ipywidgets import interactive_output, fixed
+from IPython.display import Image
 
 
-# In[2]:
+# In[8]:
 
 
 with open('./data/processed/wordle-answers-alphabetical.txt', 'r') as file:
@@ -31,7 +32,7 @@ print("Number of possible answer words:", len(possible_answers))
 print("Number of accepted guess words:", len(words_allowed_guesses))
 
 
-# In[4]:
+# In[9]:
 
 
 letters = [letter for letter in "azertyuiopqsdfghjklmwxcvbn"]
@@ -46,13 +47,13 @@ def display_word(word):
     plt.show()
 
 
-# In[5]:
+# In[10]:
 
 
 display_word("hello")
 
 
-# In[6]:
+# In[11]:
 
 
 def compare_words(query_word, answer_word):
@@ -73,19 +74,19 @@ def compare_words(query_word, answer_word):
     return "".join(res)
 
 
-# In[7]:
+# In[12]:
 
 
 compare_words("raise", "gorge")
 
 
-# In[8]:
+# In[13]:
 
 
 compare_words("crane","crane")
 
 
-# In[9]:
+# In[14]:
 
 
 def filter_words(possible_words, word, comparison_string):
@@ -96,7 +97,7 @@ def filter_words(possible_words, word, comparison_string):
     return new_possible_words
 
 
-# In[10]:
+# In[15]:
 
 
 print(filter_words(possible_answers, "raise", "10002"))
@@ -104,7 +105,13 @@ print(filter_words(possible_answers, "raise", "10002"))
 
 # $ score(word) = \sum_{letter  \in  word}\frac{1}{rank(letter)} $
 
-# In[11]:
+# In[16]:
+
+
+Image('data/processed/higfreq.png')
+
+
+# In[17]:
 
 
 letters_by_frequency = "eariotnslcudpmhgbfywkvxzjq"
@@ -117,14 +124,14 @@ def score_RelativeFreq_ofWord(word):
     return score
 
 
-# In[12]:
+# In[18]:
 
 
 print("raise:", score_RelativeFreq_ofWord("raise"))
 print("bumpy:", score_RelativeFreq_ofWord("bumpy"))
 
 
-# In[13]:
+# In[19]:
 
 
 def solver_RelativeFrequency_method(comparison_string, word, possible_words):
@@ -138,7 +145,7 @@ def solver_RelativeFrequency_method(comparison_string, word, possible_words):
         return word, possible_words
 
 
-# In[14]:
+# In[20]:
 
 
 best_20_starting_words=["roate","raise","raile","soare","arise","irate","orate","ariel","arose","raine","artel","taler","ratel","aesir","arles","realo","alter","saner","later","snare"]
@@ -146,7 +153,7 @@ best_20_starting_words=["roate","raise","raile","soare","arise","irate","orate",
 
 # ## Evalutating solutions
 
-# In[15]:
+# In[21]:
 
 
 def test_solution(answer_word, solver_method_type, starting_word="tares"):
@@ -172,13 +179,13 @@ def evaluate_solver(possible_words, solver_method_type, starting_word="mount"):
     print(", ".join(failed))
 
 
-# In[16]:
+# In[22]:
 
 
 evaluate_solver(possible_answers, solver_RelativeFrequency_method, starting_word="raise")
 
 
-# In[18]:
+# In[ ]:
 
 
 for word in best_20_starting_words:
@@ -187,19 +194,19 @@ for word in best_20_starting_words:
     print("----------------------------------------------------------")
 
 
-# In[19]:
+# In[ ]:
 
 
 evaluate_solver(possible_answers, solver_RelativeFrequency_method, starting_word="tares")
 
 
-# In[20]:
+# In[ ]:
 
 
 test_solution("alone",solver_RelativeFrequency_method,starting_word="crane")
 
 
-# In[21]:
+# In[ ]:
 
 
 test_solution("audio",solver_RelativeFrequency_method,starting_word="plane")
