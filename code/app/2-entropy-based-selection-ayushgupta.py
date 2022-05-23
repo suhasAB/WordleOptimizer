@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[27]:
+# In[1]:
 
 
 import pandas as pd
@@ -29,14 +29,6 @@ print(len(allPatterns))
 
 
 #  Extracting all and curated word list from data folder
-# with open(r'words.txt', encoding='utf-8') as f:
-#     rawwordlelist = f.read()
-# rawwordlelist = rawwordlelist.split(",")
-# allWordList = []
-# for word in rawwordlelist:
-#     word = word.strip('"')
-#     allWordList.append(word)
-# print(len(allWordList))
 
 allWordList = list(pd.read_csv('./data/processed/valid_guesses.csv')['word'])
 curatedWordList = list(pd.read_csv('./data/processed/valid_solutions.csv')['word'])
@@ -124,18 +116,34 @@ def calculateEntropies(possibleWords, wordPatternMap):
         for pattern in allPatterns:
             matches = wordPatternMap[word][tuple(pattern)]
             matches = matches.intersection(possibleWords)
+#             print("pattern"+str(pattern)+ "lenMatches"+ str(len(matches)))
             counts.append(len(matches))
+#         print("========word['"+ str(word)+ "']==:count"+ str(counts))
+            
+        # Here in counts list, we have distribution of 243 pattern from a word and resultant match countpossible words.
         entropiesMap[word] = entropy(counts)
     return entropiesMap
 
 
-# In[ ]:
-
-
-
-
-
 # In[10]:
+
+
+# Given all the curated word list of 2315 words as possible words for first guess,
+# lets sort them by entropy calcuation order
+# after every guess and resultant pattern, we will check entropies for the remaining set of possible words,
+# And then choose randomly one out of top 10 possible word based on maximum entropy order.
+entropyMap = calculateEntropies(set(curatedWordList), wordPatternMap)
+wordsEntropyInitially = sorted(entropyMap.items(), key= lambda x: -x[1])
+
+
+# In[25]:
+
+
+print(wordsEntropyInitially)
+# In result you can see we can try raise as our first word as it gives maximum entropy gain.
+
+
+# In[ ]:
 
 
 # Lets begin a trial
@@ -187,14 +195,14 @@ playNyTimesWordleWithUserInput()
     
 
 
-# In[17]:
+# In[ ]:
 
 
 # Statistical Analysis for number of trails
 countSum = 0
 totalTrial = 0
 guessCountToWin = list()
-for noOfTrial in range(200):
+for noOfTrial in range(1000):
     sm = 0
     realAnswer = random.choice(curatedWordList)
     print("====RealAnswer to reach is ", realAnswer)
@@ -241,12 +249,19 @@ print("totalTrial", len(guessCountToWin))
 print("guess array", guessCountToWin)
 
 
-# In[23]:
+# In[43]:
 
 
 plt.close("all")
 df = pd.DataFrame(guessCountToWin)
-df.plot.barh()
+# fig = plt.figure(figsize=(10, 5))
+# creating the bar plot
+# plt.barh(df, color='maroon')
+df.plot.barh(color='red', figsize=(10,10))
+plt.xlabel("Guess Count")
+plt.ylabel("")
+plt.title("Guess Count with trial sequence")
+plt.show()
 
 
 # In[25]:
@@ -265,8 +280,14 @@ series = pd.Series(tryCountMap, index=[1,2,3,4,5,6,7,8], name="Guess Count")
 series.plot.pie(autopct='%1.1f%%',figsize=(15, 15))
 
 
+# In[34]:
+
+
+get_ipython().system('jupyter nbconvert 2-entropy*.ipynb --to python')
+
+
 # In[ ]:
 
 
-get_ipython().system('jupyter nbconvert 2-entropyayushgupta*.ipynb --to python')
+
 
