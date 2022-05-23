@@ -35,16 +35,16 @@ Equation of Entropy can be calculated using the formula:
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy of combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 We plan to use this preprocessed data to come up with 3 strategies to minimize the number of guesses.
 
-  1. Entropy based strategy(Reducing Possible words in each guess based on Entropy)
-     For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
-     Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where
-     S is the original possible candidate solutions. 
-     So we calculate the entropy for a specific possible guess using:
-     H(w) = - ∑(p* log p) where p = Sp/S
-     We can then guess word which has maximum entropy.
+### 4.1 Entropy based strategy(Reducing Possible words in each guess based on Entropy)  
+For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
+Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where
+S is the original possible candidate solutions.  
+So we calculate the entropy for a specific possible guess using:  
+#### H(w) = - ∑(p* log p) where p = Sp / S  
+We can then guess word which has maximum entropy.
      
-  3. Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
-  4. Naive Approach based on Regular Expression.
+### 4.2 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+### 4.3 Naive Approach based on Regular Expression.
 
 
 Average human takes somewhere between 3.8 based on different stats(scrapped from social media). We will explore the above 3 strategies to  reduce the guessing score that is better than humans ,compare and evaluate them.
