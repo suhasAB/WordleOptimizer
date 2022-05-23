@@ -36,8 +36,15 @@ We plan on analysing the game by exploring the trends and patterns in the 5 lett
 We plan to use this preprocessed data to come up with 3 strategies to minimize the number of guesses.
 
   1. Entropy based strategy(Reducing Possible words in each guess based on Entropy)
-  2. Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
-  3. Naive Approach based on Regular Expression.
+     For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
+     Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where
+     S is the original possible candidate solutions. 
+     So we calculate the entropy for a specific possible guess using:
+     H(w) = - ∑(p* log p) where p = Sp/S
+     We can then guess word which has maximum entropy.
+     
+  3. Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+  4. Naive Approach based on Regular Expression.
 
 
 Average human takes somewhere between 3.8 based on different stats(scrapped from social media). We will explore the above 3 strategies to  reduce the guessing score that is better than humans ,compare and evaluate them.
@@ -114,5 +121,4 @@ In this method, the aim was to find the most frequent five letter words which ar
 ![Heatmap frequency vs position](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/Frequency_Map.jpeg)
 
 The above bar graph shows the top 20 most frequently used words. We are anticipating that using the word for our first guess based on the relative frequency of the word with entropy combined is a good strategy to reduce the number of possible words for the next guess.
-
 
