@@ -50,9 +50,7 @@ We can then guess word which has maximum entropy.
 Average human takes somewhere between 3.8 based on different stats(scrapped from social media). We will explore the above 3 strategies to  reduce the guessing score that is better than humans ,compare and evaluate them.
 
 
-## Preliminary Analysis
-
-## 5. Methods:
+## 5. Exploratory Preliminary Analysis
 
 
 ### 5.1. Extracting,Preprocessing and Curating Dataset:
@@ -122,3 +120,31 @@ In this method, the aim was to find the most frequent five letter words which ar
 
 The above bar graph shows the top 20 most frequently used words. We are anticipating that using the word for our first guess based on the relative frequency of the word with entropy combined is a good strategy to reduce the number of possible words for the next guess.
 
+## 6. Methods
+
+### 6.3 Entropy based approach
+The entropy is a good parameter to choose guess word as it splits our dictionary of possible words in a more consistent manner.  
+For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
+Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where S is the original possible candidate solutions.  
+So we calculate the entropy for a specific possible guess using:  
+#### H(w) = - ∑(p* log p) where p = Sp / S
+We can then guess word which has maximum entropy. 
+
+We create wordPatternMap for each word. each word will have 243 patterns and next possible set of words for that pattern.
+<img width="699" alt="Screen Shot 2022-05-23 at 4 29 58 PM" src="https://user-images.githubusercontent.com/55319952/169920383-8f97fc5d-41d5-4834-9f81-cb1a87e10e8e.png">
+
+Then we use the entropy calculation for each possible word before the next guess and choose maximum entopy word as next guess.
+<img width="699" alt="Screen Shot 2022-05-23 at 4 27 31 PM" src="https://user-images.githubusercontent.com/55319952/169920218-fa6e9262-8da1-497c-92b5-e9405b2d4e4d.png">
+
+Then we try to simulate solving NYTimes wordle problem interactively by feeding best entropy word as guess word in wordle and putting feedback of grey, yellow and green letter in form of 0,1,2 in our notebook.
+<img width="1383" alt="Solving-wordle-live-with-entropy-approach" src="https://user-images.githubusercontent.com/55319952/169921212-ead3845f-2970-4659-b579-71d72593fe03.png">
+
+Next, we try to visualize guess count result from using 1000 trial sequence.
+
+![barh-for-no-of-guess-for-every-trial](https://user-images.githubusercontent.com/55319952/169921362-ca3146ef-85ed-4ccd-97b0-26ea5ab1d94d.png)
+![pie-chart-to-show-guess-count-percentage](https://user-images.githubusercontent.com/55319952/169921377-632a8324-c9e9-4e24-bf55-e77eba269447.png)
+
+Results we found:  
+Average Guess Count = 3.7  
+Failure Rate(Guess count more than 6) = 1.1 %  
+Success Rate = 98.1 %
