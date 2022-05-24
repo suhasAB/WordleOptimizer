@@ -180,3 +180,8 @@ Success Rate = 98.1 %<br>
 
 - Combination of Entropy with Relative Frequency employs both Information gain and best word selection based on number of possible words remaining.
 
+Our finding:
+
+<img width="1143" alt="Screen Shot 2022-05-23 at 7 26 57 PM" src="https://user-images.githubusercontent.com/55319952/169936281-043c7bae-9e02-43b4-bcfa-d28d1fb2253f.png">
+
+Therefore, we can conclude that we can optimally solve the wordle problem by combining entropy with relative frequency for best results in comparison to other methods we have used.
