@@ -169,21 +169,21 @@ To do statistical analysis on our regex approach, we tested our algorithm for 10
 
 
 
-### 3.2 Relative Frequency based approach
+### 3.2. Relative Frequency based approach
 Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess.
 
-#### 1) Compare Function
+#### 3.2.1. Compare Function
 
 We will start the program with a function called compare words where we compare our guessed word with the solution, which we already have beforehand. We chose to represent the results as strings, with a 0 representing a letter that is not present, a 1 representing a letter present but in the wrong spot and a 2 a letter present and in the right spot.
 
 ![Compare Function](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/1q.png)
 
-#### 2) Match Pattern
+#### 3.2.2. Match Pattern
 
 Once as we have this pattern, we created a function that filters the words to keep only the ones that match the pattern, giving us the list of words that are still possible solutions.
 ![Matching Pattern](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/2q.png)
 
-#### 3) Character Frequency
+#### 3.2.3. Character Frequency
 
 As we have multiple words to choose from, it would be nice if we could assign a score to each of them, telling us how beneficial playing the word will be. A first idea for a scoring function is, a word which contains common letters will be better to play, because it’s more likely it will match letters from the solution. Hence we took a list of letters ranked by frequency of use in English words. We constrcuted a score function based on that.
 
@@ -192,14 +192,14 @@ As we have multiple words to choose from, it would be nice if we could assign a 
 ![Scoring Word](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/5q.png)
 
 
-#### 4) Solver Method
+#### 3.2.4. Solver Method
 
 As we have the score function, we can rank all our possibilities sorted by score and choose the best one. We have to repeat the same approach with pattern matching, and then assigning score and checking the word. We might have been a little lucky or unfortunate with this approach, depending on the number of steps we took to solve it. Now we can test our solver over all the possible solution words, to see how we do on average.
 
 ![Solver](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/6q.png)
 
 
-#### 5) Evaluations
+#### 3.2.5. Evaluations
 
 We defined functions to determine the robustness of our approach, and we found the following. With this approach, we can find the word in about 3.8 tries on average, which is relatively better. However, there are on average 29 or 30 words out of 2315 words that takes more than 6 tries, so the failure rate is around 1.38 and the success rate is 98.62. Following are the functions to test solution and evaluate solver.
 
