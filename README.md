@@ -231,7 +231,41 @@ Failure Rate(Guess count more than 6) = 1.1 %  <br>
 Success Rate = 98.1 %<br>
 
 
-### 3.3 Combination of Entropy and Relative Frequency:
+### 3.4 Combination of Entropy and Relative Frequency:
+<p>
+
+Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.
+Relative Frequency Approach focuses on choosing the best word for the given pattern at each guess based on relative frequency of letters and words involved.
+By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess.
+</p>
+<p>
+We created a method to compare a given word with a target word and return a numerical string of length 5.Each character could be 0,1,2 depending upon following conditions.
+0 if the letter doesn’t exist in the target word, return 1 of the letter exists in a different position and 2 if the letter is exactly present in the same position.
+</p>
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Compare%20words.png" width="60%" />
+</p>
+
+<p>
+ We created another method to filter the possible outcomes for a given guess and the pattern it generates with respect to the target word.
+</p>
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Filter%20words.png" width="100%" />
+</p>
+<h4>Optimizing scoring mechanism</h4>
+<p>
+  To optimize the process of guessing words, we take into account all the possibilities after playing a candidate word. We can compute, for every possible resulting pattern, the number of words that will match it. The best candidate will be the word which leaves the fewest possibilities when averaged over all the possible results.To rank the possible remaining words,we can use a scoring mechanism that considers things like Relative Frequency,Pattern Matching and Information gain after each guess.
+</p>
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/ImprovedScoreMethod.png" width="100%" />
+</p>
+This score can be used to rank the best possible candidates among remaining possible words,as well as best starting words.
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Best%20starting%20Words.png" width="100%" />
+</p>
 
 
 ## 4.Conclusion
