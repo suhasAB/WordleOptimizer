@@ -31,9 +31,12 @@ Spring 2022
 Wordle is an online word guessing game,originally created by Software Engineer Josh Wardle and currently published by The New York Times Company since 2022.wherein a new 5 letter word is set by the game each day and it is supposed to be guessed by players within 6 tries. User gets feedback about the closeness of his/her guess by 3 color indicators. Green on a block suggests the letter exists in the target word and is in the exact position the player has guessed, Yellow indicates the letter exists in the target word, but not in the position the player has guessed. Grey indicates the letter doesn't exist in the target word. Using these clues,Players are supposed to make better guesses in the remaining guesses to get to the target word in the minimum number of guesses.
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy of combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
-### We plan to use this preprocessed data to come up with 3 strategies to minimize the number of guesses.
+### We plan to use preprocessed data to come up with 3 strategies to minimize the number of guesses.
 
 ### 1.1 Entropy based strategy(Reducing Possible words in each guess based on Entropy)  
+<details>
+     <summary> Click to see more details</summary>
+
 For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
 Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where
 S is the original possible candidate solutions.  
@@ -41,9 +44,19 @@ So we calculate the entropy for a specific possible guess using:
 #### H(w) = - ∑(p* log p) where p = Sp / S  
 ![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
 We can then guess word which has maximum entropy.
+</details> 
      
 ### 1.2 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+<details>
+     <summary> Click to see more details</summary>
+     - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.
+     - Relative Frequency Approach focuses on choosing the best word for the given pattern at each guess based on relative frequency of letters and words involved. <br>
+     - By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess. <br>   
+</details> 
+
 ### 1.3 Naive Approach based on Regular Expression.
+
+
 
 
 
