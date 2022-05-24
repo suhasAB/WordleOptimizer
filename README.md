@@ -153,16 +153,19 @@ To do statistical analysis on our regex approach, we tested our algorithm for 10
 ### 3.2 Relative Frequency based approach
 Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess.
 
-1) Compare Function
+#### 1) Compare Function
+
 We will start the program with a function called compare words where we compare our guessed word with the solution, which we already have beforehand. We chose to represent the results as strings, with a 0 representing a letter that is not present, a 1 representing a letter present but in the wrong spot and a 2 a letter present and in the right spot.
 
 ![Compare Function](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/1q.png)
 
-2) Match Pattern
+#### 2) Match Pattern
+
 Once as we have this pattern, we created a function that filters the words to keep only the ones that match the pattern, giving us the list of words that are still possible solutions.
 ![Matching Pattern](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/2q.png)
 
-3) Character Frequency
+#### 3) Character Frequency
+
 As we have multiple words to choose from, it would be nice if we could assign a score to each of them, telling us how beneficial playing the word will be. A first idea for a scoring function is, a word which contains common letters will be better to play, because it’s more likely it will match letters from the solution. Hence we took a list of letters ranked by frequency of use in English words. We constrcuted a score function based on that.
 
 ![English Characters Frequency](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/3q.png)
