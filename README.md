@@ -199,7 +199,7 @@ As we have the score function, we can rank all our possibilities sorted by score
 ![Solver](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/6q.png)
 
 
-#### 3.2.5. Evaluations
+#### 3.2.5. Statistical Analysis and Test Evaluations
 
 We defined functions to determine the robustness of our approach, and we found the following. With this approach, we can find the word in about 3.8 tries on average, which is relatively better. However, there are on average 29 or 30 words out of 2315 words that takes more than 6 tries, so the failure rate is around 1.38 and the success rate is 98.62. Following are the functions to test solution and evaluate solver.
 
