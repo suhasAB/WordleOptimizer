@@ -57,7 +57,7 @@ If we guess the word which has maximum entropy, it leads to reduction in number 
 <details>
      <summary> Click to see more details</summary>
      - Why - Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess. <br>   
-     - Relative Frequency Approach focuses on choosing the best word for the given pattern at each guess based on relative frequency of letters and words involved. <br>
+   
 </details> 
      
 ### 1.4. Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
