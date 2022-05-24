@@ -151,6 +151,13 @@ To do statistical analysis on our regex approach, we tested our algorithm for 10
 
 
 ### 3.2 Relative Frequency based approach
+Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess.
+
+1) Compare Function
+We will start the program with a function called compare words where we compare our guessed word with the solution, which we already have beforehand. We chose to represent the results as strings, with a 0 representing a letter that is not present, a 1 representing a letter present but in the wrong spot and a 2 a letter present and in the right spot.
+
+!(Compare Function)(https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/1q.png)
+
 
 ### 3.3 Entropy based approach
 The entropy is a good parameter to choose guess word as it splits our dictionary of possible words in a more consistent manner.  
