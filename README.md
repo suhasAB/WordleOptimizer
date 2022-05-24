@@ -31,9 +31,19 @@ Spring 2022
 Wordle is an online word guessing game,originally created by Software Engineer Josh Wardle and currently published by The New York Times Company since 2022.wherein a new 5 letter word is set by the game each day and it is supposed to be guessed by players within 6 tries. User gets feedback about the closeness of his/her guess by 3 color indicators. Green on a block suggests the letter exists in the target word and is in the exact position the player has guessed, Yellow indicates the letter exists in the target word, but not in the position the player has guessed. Grey indicates the letter doesn't exist in the target word. Using these clues,Players are supposed to make better guesses in the remaining guesses to get to the target word in the minimum number of guesses.
 We plan on analysing the game by exploring the trends and patterns in the 5 letter dataset,using Information theory concepts such as Entropy to deduce information gained from each guess and the best possible strategies to guess given the entropy calculated from the previous guesses. The goal is to come up with guesses having maximum entropy, i.e providing the most information so that we can use that information to make better guesses.This reduces the number of possible words in each turn. We also plan on exploring strategy of combining Entropy with Probability of Relative word Frequency of the possible words for guesses at each stage. The model should be able to come up with minimal and Informative guesses before reaching the target word.
 
+### The game can be played in both interactive mode and automated mode,but Only Automated Games are considered for Evaluating Output Metrics
+
 ### We plan to use preprocessed data to come up with 3 strategies to minimize the number of guesses.
 
-### 1.1 Entropy based strategy(Reducing Possible words in each guess based on Entropy)  
+### 1.1 Naive Approach based on Regular Expression.
+
+<details>
+     <summary> Click to see more details</summary>
+Regular expressions are particularly useful for defining filters. It will help us in reducing the possible words list. For the initial guess we will be generating the pattern using most frequent letters and then later on according to the information we get from the color of the letter we generate new regex pattern. We keep on doing this until we find our word.
+
+</details> 
+
+### 1.2 Entropy based strategy(Reducing Possible words in each guess based on Entropy)  
 <details>
      <summary> Click to see more details</summary>
 
@@ -46,7 +56,7 @@ So we calculate the entropy for a specific possible guess using:
 We can then guess word which has maximum entropy.
 </details> 
      
-### 1.2 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+### 1.3 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
 <details>
      <summary> Click to see more details</summary>
      - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.
@@ -54,16 +64,12 @@ We can then guess word which has maximum entropy.
      - By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess. <br>   
 </details> 
 
-### 1.3 Naive Approach based on Regular Expression.
-
-
-
-
 
 
 
 ## 2. Experiments and Analysis:
 
+### Different Analysis of data is being done to understand the patterns and Frequency distribution of Letters and Words,so that it the insights from these analytics would help in forming the Game solver methods based on Information theory concepts.
 
 ### 2.1. Extracting,Preprocessing and Curating Dataset:
 In this method, primary aim is to get a list of all possible wordle answers i.e. 5 letter English words along with  other curated and Most frequent subsets. We used web scraping on the wordle website’s source JavaScript code to extract the list of all possible answers(5 letter words). There were around 12972 words in the list, and it is saved in multiple formats (json, text, csv )for further processing. 
