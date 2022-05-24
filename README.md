@@ -141,8 +141,13 @@ Then we try to simulate solving NYTimes wordle problem interactively by feeding 
 
 Next, we try to visualize guess count result from using 1000 trial sequence.
 
-![barh-for-no-of-guess-for-every-trial](https://user-images.githubusercontent.com/55319952/169921362-ca3146ef-85ed-4ccd-97b0-26ea5ab1d94d.png)
-![pie-chart-to-show-guess-count-percentage](https://user-images.githubusercontent.com/55319952/169921377-632a8324-c9e9-4e24-bf55-e77eba269447.png)
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/55319952/169921362-ca3146ef-85ed-4ccd-97b0-26ea5ab1d94d.png" width="500" />
+  <img src="https://user-images.githubusercontent.com/55319952/169921377-632a8324-c9e9-4e24-bf55-e77eba269447.png" width="500" /> 
+<!--   <img src="/img3.png" width="100" /> -->
+</p>
+<!-- ![barh-for-no-of-guess-for-every-trial](https://user-images.githubusercontent.com/55319952/169921362-ca3146ef-85ed-4ccd-97b0-26ea5ab1d94d.png)
+![pie-chart-to-show-guess-count-percentage](https://user-images.githubusercontent.com/55319952/169921377-632a8324-c9e9-4e24-bf55-e77eba269447.png) -->
 
 Results we found:  
 Average Guess Count = 3.7  
