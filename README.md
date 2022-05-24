@@ -239,6 +239,7 @@ Relative Frequency Approach focuses on choosing the best word for the given patt
 By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess.
 </p>
 <p>
+     <h3>1.Comparision method</h3>
 We created a method to compare a given word with a target word and return a numerical string of length 5.Each character could be 0,1,2 depending upon following conditions.
 0 if the letter doesn’t exist in the target word, return 1 of the letter exists in a different position and 2 if the letter is exactly present in the same position.
 </p>
@@ -246,7 +247,7 @@ We created a method to compare a given word with a target word and return a nume
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Compare%20words.png" width="60%" />
 </p>
-
+ <h3>2.Filtering method</h3>
 <p>
  We created another method to filter the possible outcomes for a given guess and the pattern it generates with respect to the target word.
 </p>
@@ -254,7 +255,8 @@ We created a method to compare a given word with a target word and return a nume
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Filter%20words.png" width="100%" />
 </p>
-<h4>Optimizing scoring mechanism</h4>
+
+<h3>3.Optimizing scoring mechanism</h3>
 <p>
   To optimize the process of guessing words, we take into account all the possibilities after playing a candidate word. We can compute, for every possible resulting pattern, the number of words that will match it. The best candidate will be the word which leaves the fewest possibilities when averaged over all the possible results.To rank the possible remaining words,we can use a scoring mechanism that considers things like Relative Frequency,Pattern Matching and Information gain after each guess.
 </p>
@@ -262,9 +264,45 @@ We created a method to compare a given word with a target word and return a nume
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/ImprovedScoreMethod.png" width="100%" />
 </p>
+<h3>4.Evaluating Best starting words</h3>
 This score can be used to rank the best possible candidates among remaining possible words,as well as best starting words.
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Best%20starting%20Words.png" width="100%" />
+</p>
+<h3>5. Solver Methods based on Relative Frequency and Information Gain</h3>
+We came up with 2 methods to solve wordle with the help of the new scoring mechanism.
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Solver%20E_RF_methods.png" width="100%" />
+</p>
+
+<p>
+  <ul>
+      <li> The 1st method is similar to Relative Frequency based solver,just the scoring mechanism is replaced with the new one. This method tries to guess answers that can match the target word the most,based on the ranking of remaining words using the new scoring mechanism.</li>
+      <li>The 2nd Method tries to optimize the problem even further by eliminating the limitation of only using words that could be a solution. Here,if the number of words possible is more than 3,this method tries to use words that cannot be the solution, but which would give us more information. If the number of words is less than or equal to 3,it goes back to guessing the words based on rankings of possible word solutions. This uses a tradeoff between pattern matching of Relative Frequency and Information gain of Entropy approach to find the optimal solution.</li>
+ </ul> 
+</p>
+
+<h3>6.Evaluation Methods</h3>
+We have written evaluation methods 
+<ul>
+      <li>To test out single solutions that return the number of guesses for a given method. </li>
+      <li>To test multiple solutions and returns the mean number of guesses and number of failed games for a given method.</li>
+     
+</ul>
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Test%20eval%20erf.png" width="100%" />
+</p>
+
+<h3>7.Results</h3>
+<ul>
+     <li>Base solver_EntropyRelFreqCombo_method has an average number of attempts of around 3.6 and an average success rate of 99.3%. </li>
+    <li> Optimized solver_AdvancedEntropyRelFreqCombo_method has an average number of attempts of around 3.5 and an average success rate of 100%  </li>
+</ul>
+<p float="left">
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Results%20of%20ERF.png" width="100%" />
+  <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Results%20of%20Advanced%20ERF.png" width="100%" />
 </p>
 
 
