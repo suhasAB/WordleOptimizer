@@ -131,29 +131,37 @@ For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray
 Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where S is the original possible candidate solutions.  
 So we calculate the entropy for a specific possible guess using:  
 #### H(w) = - ∑(p* log p) where p = Sp / S
-We can then guess word which has maximum entropy. 
+We can then guess word which has maximum entropy.
 
-We create wordPatternMap for each word. each word will have 243 patterns and next possible set of words for that pattern.
+First, we load our all valid guesses word list and curated word list into the notebook. In this approach we try to reduce the possible curated words after each guess to come up with answer in minimum guess.
+
+<img width="734" alt="Screen Shot 2022-05-23 at 10 23 25 AM" src="https://user-images.githubusercontent.com/55319952/169934198-6cb043ab-cb0a-454a-9338-f013242444f8.png">
+
+Then, We create a function to convert a guess word into a tuple of 5 length with 0 representing grey, 1 representing yellow and 2 for green in a pattern.
+<img width="1009" alt="Screen Shot 2022-05-23 at 10 28 22 AM" src="https://user-images.githubusercontent.com/55319952/169934358-8093eba4-7b25-4eee-ae5b-c552850ce2fc.png">
+
+
+We then create wordPatternMap for each word in curated word list. each word will have 243 patterns and next possible set of words for that pattern. We load this wordPatternMap into a .p file as cache as this map will be of large size and take some time to process. So we can avoid same processing next time we run the project.  
 <img width="699" alt="Screen Shot 2022-05-23 at 4 29 58 PM" src="https://user-images.githubusercontent.com/55319952/169920383-8f97fc5d-41d5-4834-9f81-cb1a87e10e8e.png">
 
 Then we use the entropy calculation for each possible word before the next guess and choose maximum entopy word as next guess.
 <img width="699" alt="Screen Shot 2022-05-23 at 4 27 31 PM" src="https://user-images.githubusercontent.com/55319952/169920218-fa6e9262-8da1-497c-92b5-e9405b2d4e4d.png">
 
 Then we try to simulate solving NYTimes wordle problem interactively by feeding best entropy word as guess word in wordle and putting feedback of grey, yellow and green letter in form of 0,1,2 in our notebook.
-<img width="1383" alt="Solving-wordle-live-with-entropy-approach" src="https://user-images.githubusercontent.com/55319952/169921212-ead3845f-2970-4659-b579-71d72593fe03.png">
+<img width="600" alt="Screen Shot 2022-05-23 at 11 06 31 AM" src="https://user-images.githubusercontent.com/55319952/169935005-e5bb7dbb-4504-4b31-a40e-90dfdb89c90f.png">
 
-Next, we try to visualize guess count result from using 1000 trial sequence.
+<img width="1000" alt="Solving-wordle-live-with-entropy-approach" src="https://user-images.githubusercontent.com/55319952/169921212-ead3845f-2970-4659-b579-71d72593fe03.png">
 
+Next, we run to calculate guess count result using 1000 trial sequence by randomly choosing one word out of 2315 curated word as real answer for that trial.  
+<img width="500" alt="Screen Shot 2022-05-23 at 11 11 53 AM" src="https://user-images.githubusercontent.com/55319952/169935399-c9f6181f-24a6-4c21-93d7-fe98e66edfdb.png">   
+We draw pie chart and horizontal bar graph to visualize the guess count distribution for 1000 trials.  
 <p float="left">
   <img src="https://user-images.githubusercontent.com/55319952/169921362-ca3146ef-85ed-4ccd-97b0-26ea5ab1d94d.png" width="500" />
   <img src="https://user-images.githubusercontent.com/55319952/169921377-632a8324-c9e9-4e24-bf55-e77eba269447.png" width="500" /> 
 <!--   <img src="/img3.png" width="100" /> -->
 </p>
-<!-- ![barh-for-no-of-guess-for-every-trial](https://user-images.githubusercontent.com/55319952/169921362-ca3146ef-85ed-4ccd-97b0-26ea5ab1d94d.png)
-![pie-chart-to-show-guess-count-percentage](https://user-images.githubusercontent.com/55319952/169921377-632a8324-c9e9-4e24-bf55-e77eba269447.png)
--->
 
-Results we found:  <br>
+Results we found with this approach:  <br>
 Average Guess Count = 3.7  <br>
 Failure Rate(Guess count more than 6) = 1.1 %  <br>
 Success Rate = 98.1 %<br>
