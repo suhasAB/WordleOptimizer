@@ -51,9 +51,16 @@ Entropy can be a good parameter to choose guess word as it splits our dictionary
 #### H(w) = - ∑(p* log p) where p = Sp / S  
 ![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg) <br>
 If we guess the word which has maximum entropy, it leads to reduction in number of possible words after each guess.
+</details>
+
+### 1.3. Relative Frequency
+<details>
+     <summary> Click to see more details</summary>
+     - Why - Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess. <br>   
+     - Relative Frequency Approach focuses on choosing the best word for the given pattern at each guess based on relative frequency of letters and words involved. <br>
 </details> 
      
-### 1.3 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+### 1.4. Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
 <details>
      <summary> Click to see more details</summary>
      - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.<br>
