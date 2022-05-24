@@ -140,7 +140,7 @@ def solver_RelativeFrequency_method(comparison_string, word, possible_words):
 
 # ## Improved solving method by combining Entropy with Relative Frequency
 
-# ![Score](entropyBasedScore.png)
+# ![Score](https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/entropy%2Brelfreq.png)
 
 # In[31]:
 
