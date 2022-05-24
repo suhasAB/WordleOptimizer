@@ -52,14 +52,14 @@ Each pattern p will result in a reduction of the possible candidate solutions to
 S is the original possible candidate solutions.  
 So we calculate the entropy for a specific possible guess using:  
 #### H(w) = - ∑(p* log p) where p = Sp / S  
-![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
-We can then guess word which has maximum entropy.
+![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg) <br>
+If we guess the word which has maximum entropy, it leads to reduction in number of possible words after each guess.
 </details> 
      
 ### 1.3 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
 <details>
      <summary> Click to see more details</summary>
-     - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.
+     - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.<br>
      - Relative Frequency Approach focuses on choosing the best word for the given pattern at each guess based on relative frequency of letters and words involved. <br>
      - By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess. <br>   
 </details> 
