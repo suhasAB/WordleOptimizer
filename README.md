@@ -121,6 +121,34 @@ The above bar graph shows the top 20 most frequently used words. We are anticipa
 ## 3. Comparisions of Different Information Theory based Approaches
 
 ### 3.1 Regex approach
+Why this approach: Regular expressions are particularly useful for defining filters. It will help us in reducing the possible words list.
+
+I started by importing the valid solutions word list of 2315.
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949273-4905b1d8-2934-493c-8c44-26ebdebde7f5.png">
+
+Then I found the letter frequency which will be used to forming the regex pattern for the initial guess.
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949332-105931b2-1f16-4998-a571-4c4de3242b96.png">
+
+Then we write a function isUniqueChars that accepts a word as parameter and returns true if all the five letters of the word are unique.
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949405-f4bad234-25dc-44e2-8ce4-4c42c9625024.png">
+
+We write a function regex_wordle which accepts the input word i.e the word to be guessed. For initial guess we will form a pattern which will contain letters that are most frequent. Initial pattern =r's[earot]{4}'. As we can see in point 2 above letters e,a,r,o,t have the most frequencies and from the Heatmap we can see that letter s is the most common letter at first position. That’s why we are forming initial pattern using these letters. Using this pattern, we are filtering out words which contain these letters from our data of 2315 words. Then, using the isUniqueChars function we form a list of words which have unique characters and select the first word from the list, so that we can gain maximum information. Now, we compare the selected word with the input word and form an array of 0, 1, 2. I have represented grey letter as 0, yellow letter as 1 and green letter as 2. After comparing if we get array as [0,0,0,0,0] i.e all grey letters then we select next 5 most frequent letters as our pattern. Else, we form a new regex pattern using the AND logic. E.g., if the input word is ‘crave’ then the selected word is ‘stare’  and the result array generated is [0, 0, 2, 1, 2] as the letters at postion 1 and 2 are grey i.e 0 so they should be negated from the whole word, letters at position 3 and 5 are green i.e 2 so they should be kept as it is and letter at position 4 is yellow i.e 1 they should be negated only from this position. So the pattern generated will be [^st][^st][a][^rst][e]. We will keep on repeating the above steps until we find a perfect match.
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949731-e6b4e5f9-ea40-4e80-9864-9692594346af.png">
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949744-60b7cf79-9930-4073-b499-bbe7334d7dd3.png">
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949758-7c7975a2-518c-4ec3-b8bc-ae1b63b7a2d4.png">
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949771-56d35396-c20e-4baa-8d1f-18932ed2e1da.png">
+
+
+
+To do statistical analysis on our regex approach, we tested our algorithm for 1000 words from our data. Based on that, we calculate the guess count for each of the 1000 trial sequence. So, for 1000 words we got perfect match for 879 words and the total attempts taken was 3596.
+
+<img width="409" alt="image" src="https://user-images.githubusercontent.com/60649973/169949503-91e9e6c9-07bd-4991-9978-a09526a1d4a9.png">
+
+
 
 ### 3.2 Relative Frequency based approach
 
