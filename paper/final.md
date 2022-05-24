@@ -47,23 +47,19 @@ Regular expressions are particularly useful for defining filters. It will help u
 <details>
      <summary> Click to see more details</summary>
 
-Entropy can be a good parameter to choose guess word as it splits our dictionary of possible words in a more consistent manner and thus reducing next possible set of words. For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word. Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where S is the original possible candidate solutions. So we calculate the entropy for a specific possible guess using:  
+For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
+Each pattern p will result in a reduction of the possible candidate solutions to Sp, and the probability of obtaining this pattern is Sp / S where
+S is the original possible candidate solutions.  
+So we calculate the entropy for a specific possible guess using:  
 #### H(w) = - ∑(p* log p) where p = Sp / S  
-![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg) <br>
-If we guess the word which has maximum entropy, it leads to reduction in number of possible words after each guess.
-</details>
-
-### 1.3. Relative Frequency
-<details>
-     <summary> Click to see more details</summary>
-     - Why - Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess. <br>   
-   
+![Entropy H(X)](https://miro.medium.com/max/622/1*0wBPOiYyyPV8m4BiAkBbMQ.jpeg)
+We can then guess word which has maximum entropy.
 </details> 
      
-### 1.4. Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
+### 1.3 Entropy combined with Relative Frequency (To Optimize number of guesses considering Probability of Relative Frequency and Entropy)
 <details>
      <summary> Click to see more details</summary>
-     - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.<br>
+     - Entropy Based Approach focuses on reducing possible words, based on Information gained after each guess.
      - Relative Frequency Approach focuses on choosing the best word for the given pattern at each guess based on relative frequency of letters and words involved. <br>
      - By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess. <br>   
 </details> 
@@ -107,7 +103,7 @@ Broadly considering I plotted two visualizations. First is calculating the frequ
 
 ![fre_each-char](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/freq_each_updated1.png)
 
-**2.3.1 Calculating Individual Character Frequency**
+**1) Calculating Individual Character Frequency**
 
   I tried to analyze the frequency of different characters from all alphabets from A to Z. 
   
@@ -121,7 +117,7 @@ Broadly considering I plotted two visualizations. First is calculating the frequ
   Similarly calculating the frequency of individual character based on previous wordle solutions.
 
 
-**2.3.2 Calculating Frequency of Characters in all the Five Slots**
+**2) Calculating Frequency of Characters in all the Five Slots**
 
 This is calculating the frequency of each character in different slots and also the combines frequency from the five slots.
 Similar to the calculations we did in the step 1), we are doing it for 3 datasets.
@@ -150,23 +146,15 @@ I started by importing the valid solutions word list of 2315.
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949273-4905b1d8-2934-493c-8c44-26ebdebde7f5.png">
 
-Then I found the letter frequency which will be used to form the regex pattern for the initial guess. The idea here is to get maximum information from the initial guesses.
+Then I found the letter frequency which will be used to forming the regex pattern for the initial guess.
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949332-105931b2-1f16-4998-a571-4c4de3242b96.png">
 
-Then we wrote a function isUniqueChars that accepts a word as parameter and returns true if all the five letters of the word are unique. We are doing this because we want to select a word which has unique characters so that we can gain maximum information by filtering out maximum letters.
+Then we write a function isUniqueChars that accepts a word as parameter and returns true if all the five letters of the word are unique.
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949405-f4bad234-25dc-44e2-8ce4-4c42c9625024.png">
 
-We wrote a function regex_wordle which accepts the input word i.e the word to be guessed. For the initial guess, we will form a pattern that will contain the most frequent letters. Initial pattern =r's[earot]{4}'. As we can see from the graph in point 2 above letters e, a,r,o, and t have the most frequencies and from the Heatmap we can see that the letter s is the most common letter in the first position. That’s why we are forming an initial pattern using these letters so that we can gain maximum information. Using this pattern, we are filtering out words that contain these letters from our data of 2315 words. Then, using the isUniqueChars function we form a list of words that have unique characters and select the first word from the list so that we can select a word that can filter out maximum letters. Now, we compare the selected word with the input word and form an array of 0s, 1s, and 2s. I have represented the grey letter as 0, yellow letter as 1, and green letter as 2. After comparing if we get the array as [0,0,0,0,0] i.e all grey letters then we select the next 5 most frequent letters as our pattern from the graph shown in point 2. Else, we form a new regex pattern using the AND logic. E.g., if the input word is ‘crave’ then the selected word is ‘stare’ and the result array generated is [0, 0, 2, 1, 2] as the letters at position 1 and 2 are grey i.e 0 so they should be negated from the whole word, letters at position 3 and 5 are green i.e 2 so they should be kept as it is and letter at position 4 is yellow i.e 1 they should be negated only from this position. So the pattern generated will be [^st][^st][a][^rst][e]. 
-
- [^st] - first letter is not S or T
- [^st] - second letter is not S or T
- [a] - third letter is definitely A
- [^rst] - fourth letter is not T, S, or R
- [e] - fifth letter is definitely E
-
-Then from the filtered words we select only those words which contain the letters that were marked yellow i.e 1. We will keep on repeating the above steps until we find a perfect match. 
+We write a function regex_wordle which accepts the input word i.e the word to be guessed. For initial guess we will form a pattern which will contain letters that are most frequent. Initial pattern =r's[earot]{4}'. As we can see in point 2 above letters e,a,r,o,t have the most frequencies and from the Heatmap we can see that letter s is the most common letter at first position. That’s why we are forming initial pattern using these letters. Using this pattern, we are filtering out words which contain these letters from our data of 2315 words. Then, using the isUniqueChars function we form a list of words which have unique characters and select the first word from the list, so that we can gain maximum information. Now, we compare the selected word with the input word and form an array of 0, 1, 2. I have represented grey letter as 0, yellow letter as 1 and green letter as 2. After comparing if we get array as [0,0,0,0,0] i.e all grey letters then we select next 5 most frequent letters as our pattern. Else, we form a new regex pattern using the AND logic. E.g., if the input word is ‘crave’ then the selected word is ‘stare’  and the result array generated is [0, 0, 2, 1, 2] as the letters at postion 1 and 2 are grey i.e 0 so they should be negated from the whole word, letters at position 3 and 5 are green i.e 2 so they should be kept as it is and letter at position 4 is yellow i.e 1 they should be negated only from this position. So the pattern generated will be [^st][^st][a][^rst][e]. We will keep on repeating the above steps until we find a perfect match.
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949731-e6b4e5f9-ea40-4e80-9864-9692594346af.png">
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949744-60b7cf79-9930-4073-b499-bbe7334d7dd3.png">
@@ -184,18 +172,18 @@ To do statistical analysis on our regex approach, we tested our algorithm for 10
 ### 3.2 Relative Frequency based approach
 Based on the probability distribution of relative frequencies of words and letters we can estimate the best word possible for a given pattern after each guess.
 
-#### 3.2.1 Compare Function
+#### 1) Compare Function
 
 We will start the program with a function called compare words where we compare our guessed word with the solution, which we already have beforehand. We chose to represent the results as strings, with a 0 representing a letter that is not present, a 1 representing a letter present but in the wrong spot and a 2 a letter present and in the right spot.
 
 ![Compare Function](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/1q.png)
 
-#### 3.2.2 Match Pattern
+#### 2) Match Pattern
 
 Once as we have this pattern, we created a function that filters the words to keep only the ones that match the pattern, giving us the list of words that are still possible solutions.
 ![Matching Pattern](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/2q.png)
 
-#### 3.2.3 Character Frequency
+#### 3) Character Frequency
 
 As we have multiple words to choose from, it would be nice if we could assign a score to each of them, telling us how beneficial playing the word will be. A first idea for a scoring function is, a word which contains common letters will be better to play, because it’s more likely it will match letters from the solution. Hence we took a list of letters ranked by frequency of use in English words. We constrcuted a score function based on that.
 
@@ -204,14 +192,14 @@ As we have multiple words to choose from, it would be nice if we could assign a 
 ![Scoring Word](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/5q.png)
 
 
-#### 3.2.4 Solver Method
+#### 4) Solver Method
 
 As we have the score function, we can rank all our possibilities sorted by score and choose the best one. We have to repeat the same approach with pattern matching, and then assigning score and checking the word. We might have been a little lucky or unfortunate with this approach, depending on the number of steps we took to solve it. Now we can test our solver over all the possible solution words, to see how we do on average.
 
 ![Solver](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/6q.png)
 
 
-#### 3.2.5 Evaluations
+#### 5) Evaluations
 
 We defined functions to determine the robustness of our approach, and we found the following. With this approach, we can find the word in about 3.8 tries on average, which is relatively better. However, there are on average 29 or 30 words out of 2315 words that takes more than 6 tries, so the failure rate is around 1.38 and the success rate is 98.62. Following are the functions to test solution and evaluate solver.
 
@@ -228,30 +216,25 @@ So we calculate the entropy for a specific possible guess using:
 #### H(w) = - ∑(p* log p) where p = Sp / S
 We can then guess word which has maximum entropy.
 
-#### 3.3.1 Loading dataset
 First, we load our all valid guesses word list and curated word list into the notebook. In this approach we try to reduce the possible curated words after each guess to come up with answer in minimum guess.
 
 <img width="734" alt="Screen Shot 2022-05-23 at 10 23 25 AM" src="https://user-images.githubusercontent.com/55319952/169934198-6cb043ab-cb0a-454a-9338-f013242444f8.png">
 
-#### 3.3.2 Convert guess word into pattern
 Then, We create a function to convert a guess word into a tuple of 5 length with 0 representing grey, 1 representing yellow and 2 for green in a pattern.
 <img width="1009" alt="Screen Shot 2022-05-23 at 10 28 22 AM" src="https://user-images.githubusercontent.com/55319952/169934358-8093eba4-7b25-4eee-ae5b-c552850ce2fc.png">
 
-#### 3.3.3 Creating word pattern map
+
 We then create wordPatternMap for each word in curated word list. each word will have 243 patterns and next possible set of words for that pattern. We load this wordPatternMap into a .p file as cache as this map will be of large size and take some time to process. So we can avoid same processing next time we run the project.  
 <img width="699" alt="Screen Shot 2022-05-23 at 4 29 58 PM" src="https://user-images.githubusercontent.com/55319952/169920383-8f97fc5d-41d5-4834-9f81-cb1a87e10e8e.png">
 
-#### 3.3.4 Entropy calculation function
 Then we use the entropy calculation for each possible word before the next guess and choose maximum entopy word as next guess.
 <img width="699" alt="Screen Shot 2022-05-23 at 4 27 31 PM" src="https://user-images.githubusercontent.com/55319952/169920218-fa6e9262-8da1-497c-92b5-e9405b2d4e4d.png">
 
-#### 3.3.5 Solving the real-time NYTime wordle problem
 Then we try to simulate solving NYTimes wordle problem interactively by feeding best entropy word as guess word in wordle and putting feedback of grey, yellow and green letter in form of 0,1,2 in our notebook.
 <img width="600" alt="Screen Shot 2022-05-23 at 11 06 31 AM" src="https://user-images.githubusercontent.com/55319952/169935005-e5bb7dbb-4504-4b31-a40e-90dfdb89c90f.png">
 
 <img width="1000" alt="Solving-wordle-live-with-entropy-approach" src="https://user-images.githubusercontent.com/55319952/169921212-ead3845f-2970-4659-b579-71d72593fe03.png">
 
-#### 3.3.6 Statistical Analysis
 Next, we run to calculate guess count result using 1000 trial sequence by randomly choosing one word out of 2315 curated word as real answer for that trial.  
 <img width="500" alt="Screen Shot 2022-05-23 at 11 11 53 AM" src="https://user-images.githubusercontent.com/55319952/169935399-c9f6181f-24a6-4c21-93d7-fe98e66edfdb.png">   
 We draw pie chart and horizontal bar graph to visualize the guess count distribution for 1000 trials.  
@@ -261,7 +244,7 @@ We draw pie chart and horizontal bar graph to visualize the guess count distribu
 <!--   <img src="/img3.png" width="100" /> -->
 </p>
 
-#### 3.3.7 Results
+Results we found with this approach:  <br>
 Average Guess Count = 3.7  <br>
 Failure Rate(Guess count more than 6) = 1.1 %  <br>
 Success Rate = 98.1 %<br>
@@ -275,7 +258,7 @@ Relative Frequency Approach focuses on choosing the best word for the given patt
 By combining these two approaches,we arrive at a tradeoff between selecting the best possible word closest to the answer and selecting the word which gives you the most amount of Information and thereby reducing the number of possible words after each guess.
 </p>
 <p>
-     <h3>3.4.1. Comparision method</h3>
+     <h3>1.Comparision method</h3>
 We created a method to compare a given word with a target word and return a numerical string of length 5.Each character could be 0,1,2 depending upon following conditions.
 0 if the letter doesn’t exist in the target word, return 1 of the letter exists in a different position and 2 if the letter is exactly present in the same position.
 </p>
@@ -283,7 +266,7 @@ We created a method to compare a given word with a target word and return a nume
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Compare%20words.png" width="60%" />
 </p>
- <h3>3.4.2. Filtering method</h3>
+ <h3>2.Filtering method</h3>
 <p>
  We created another method to filter the possible outcomes for a given guess and the pattern it generates with respect to the target word.
 </p>
@@ -292,7 +275,7 @@ We created a method to compare a given word with a target word and return a nume
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Filter%20words.png" width="100%" />
 </p>
 
-<h3>3.4.3. Optimizing scoring mechanism</h3>
+<h3>3.Optimizing scoring mechanism</h3>
 <p>
   To optimize the process of guessing words, we take into account all the possibilities after playing a candidate word. We can compute, for every possible resulting pattern, the number of words that will match it. The best candidate will be the word which leaves the fewest possibilities when averaged over all the possible results.To rank the possible remaining words,we can use a scoring mechanism that considers things like Relative Frequency,Pattern Matching and Information gain after each guess.
 </p>
@@ -300,12 +283,12 @@ We created a method to compare a given word with a target word and return a nume
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/ImprovedScoreMethod.png" width="100%" />
 </p>
-<h3>3.4.4. Evaluating Best starting words</h3>
+<h3>4.Evaluating Best starting words</h3>
 This score can be used to rank the best possible candidates among remaining possible words,as well as best starting words.
 <p float="left">
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Best%20starting%20Words.png" width="100%" />
 </p>
-<h3>3.4.5. Solver Methods based on Relative Frequency and Information Gain</h3>
+<h3>5. Solver Methods based on Relative Frequency and Information Gain</h3>
 We came up with 2 methods to solve wordle with the help of the new scoring mechanism.
 
 <p float="left">
@@ -319,7 +302,7 @@ We came up with 2 methods to solve wordle with the help of the new scoring mecha
  </ul> 
 </p>
 
-<h3>3.4.6. Evaluation Methods</h3>
+<h3>6.Evaluation Methods</h3>
 We have written evaluation methods 
 <ul>
       <li>To test out single solutions that return the number of guesses for a given method. </li>
@@ -331,7 +314,7 @@ We have written evaluation methods
   <img src="https://raw.githubusercontent.com/suhasAB/WordleOptimizer/main/paper/images/Test%20eval%20erf.png" width="100%" />
 </p>
 
-<h3>3.4.7. Results</h3>
+<h3>7.Results</h3>
 <ul>
      <li>Base solver_EntropyRelFreqCombo_method has an average number of attempts of around 3.6 and an average success rate of 99.3%. </li>
     <li> Optimized solver_AdvancedEntropyRelFreqCombo_method has an average number of attempts of around 3.5 and an average success rate of 100%  </li>
@@ -357,8 +340,3 @@ Our finding:
 <img width="1143" alt="Screen Shot 2022-05-23 at 7 26 57 PM" src="https://user-images.githubusercontent.com/55319952/169936281-043c7bae-9e02-43b4-bcfa-d28d1fb2253f.png">
 
 Therefore, we can conclude that we can optimally solve the wordle problem by combining entropy with relative frequency for best results in comparison to other methods we have used.
-
-## 5.References
-- [https://arxiv.org/pdf/2202.00557.pdf](https://arxiv.org/pdf/2202.00557.pdf)
-
-- [https://www.youtube.com/watch?v=v68zYyaEmEA&t=470s](https://www.youtube.com/watch?v=v68zYyaEmEA&t=470s)
