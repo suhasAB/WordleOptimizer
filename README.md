@@ -154,10 +154,11 @@ Then we wrote a function isUniqueChars that accepts a word as parameter and retu
 We wrote a function regex_wordle which accepts the input word i.e the word to be guessed. For the initial guess, we will form a pattern that will contain the most frequent letters. Initial pattern =r's[earot]{4}'. As we can see from the graph in point 2 above letters e, a,r,o, and t have the most frequencies and from the Heatmap we can see that the letter s is the most common letter in the first position. That’s why we are forming an initial pattern using these letters so that we can gain maximum information. Using this pattern, we are filtering out words that contain these letters from our data of 2315 words. Then, using the isUniqueChars function we form a list of words that have unique characters and select the first word from the list so that we can select a word that can filter out maximum letters. Now, we compare the selected word with the input word and form an array of 0s, 1s, and 2s. I have represented the grey letter as 0, yellow letter as 1, and green letter as 2. After comparing if we get the array as [0,0,0,0,0] i.e all grey letters then we select the next 5 most frequent letters as our pattern from the graph shown in point 2. Else, we form a new regex pattern using the AND logic. E.g., if the input word is ‘crave’ then the selected word is ‘stare’ and the result array generated is [0, 0, 2, 1, 2] as the letters at position 1 and 2 are grey i.e 0 so they should be negated from the whole word, letters at position 3 and 5 are green i.e 2 so they should be kept as it is and letter at position 4 is yellow i.e 1 they should be negated only from this position. So the pattern generated will be [^st][^st][a][^rst][e]. 
 
  [^st] - first letter is not S or T
- [^st] - se first letter is not S or T
+ [^st] - second letter is not S or T
  [a] - third letter is definitely A
- [^rst] - third letter is not T, S, or R
+ [^rst] - fourth letter is not T, S, or R
  [e] - fifth letter is definitely E
+
 Then from the filtered words we select only those words which contain the letters that were marked yellow i.e 1. We will keep on repeating the above steps until we find a perfect match. 
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60649973/169949731-e6b4e5f9-ea40-4e80-9864-9692594346af.png">
@@ -350,7 +351,7 @@ Our finding:
 
 Therefore, we can conclude that we can optimally solve the wordle problem by combining entropy with relative frequency for best results in comparison to other methods we have used.
 
-## 4.References
-- [Relative Frequency Approach employs choosing the best word possible for a given pattern after each guess.](https://arxiv.org/pdf/2202.00557.pdf)
+## 5.References
+- [https://arxiv.org/pdf/2202.00557.pdf](https://arxiv.org/pdf/2202.00557.pdf)
 
-- [Entropy Based Approach tries to reduce the number of possible words after each guess.](https://www.youtube.com/watch?v=v68zYyaEmEA&t=470s)
+- [https://www.youtube.com/watch?v=v68zYyaEmEA&t=470s](https://www.youtube.com/watch?v=v68zYyaEmEA&t=470s)
