@@ -289,7 +289,7 @@ evaluate_solver(possible_answers,solver_AdvancedEntropyRelFreqCombo_method,start
 # In[3]:
 
 
-get_ipython().system('jupyter nbconvert 02-Entropy+RelativeFrequencyMethod-SuhasAnand.ipynb --to python')
+get_ipython().system('jupyter nbconvert 02_Entropy+RelativeFrequencyMethod-SuhasAnand.ipynb --to python')
 
 
 # In[ ]:
