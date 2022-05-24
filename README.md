@@ -173,6 +173,22 @@ As we have multiple words to choose from, it would be nice if we could assign a 
 ![Scoring Word](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/5q.png)
 
 
+#### 4) Solver Method
+
+As we have the score function, we can rank all our possibilities sorted by score and choose the best one. We have to repeat the same approach with pattern matching, and then assigning score and checking the word. We might have been a little lucky or unfortunate with this approach, depending on the number of steps we took to solve it. Now we can test our solver over all the possible solution words, to see how we do on average.
+
+![Solver](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/6q.png)
+
+
+#### 5) Evaluations
+
+We defined functions to determine the robustness of our approach, and we found the following. With this approach, we can find the word in about 3.8 tries on average, which is relatively better. However, there are on average 29 or 30 words out of 2315 words that takes more than 6 tries, so the failure rate is around 1.38 and the success rate is 98.62. Following are the functions to test solution and evaluate solver.
+
+![Test Solutions](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/7q.png)
+![Evaluate Solver](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/8q.png)
+![Test Solution Guess](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/9q.png)
+
+
 ### 3.3 Entropy based approach
 The entropy is a good parameter to choose guess word as it splits our dictionary of possible words in a more consistent manner.  
 For every possible word W, there are 3 ^ 5(5 letter in wordle and three for gray, yellow and green) possible patterns after guessing that word.
