@@ -60,8 +60,7 @@ We found a dataset from [Google books](http://norvig.com/google-books-common-wor
 
 ### 2.2. Heatmap for letter vs position in word:
 
-We tried to analyse the frequency of each letter at position from 1 to 5 in 5 letter all-words list and curated word list given by wordle creators.
-We calculated the total count at each position of letter and then calculated normalized frequency which would be from 0 to 1. Then we plot heatmap between alphabets and the position with color codes showing the frequency of letter. 
+We tried to analyse the frequency of each letter at position from 1 to 5 in 5 letter all-words list and curated word list given by wordle creators. As one of our approaches is based on the relative frequency of a word and we thought we can come up with a good guess first word whose letter has more frequency at the respected position. We calculated the total count at each position of letter and then calculated normalized frequency which would be from 0 to 1. Then we plot heatmap between alphabets and the position with color codes showing the frequency of letter. 
 
 ![Heatmap frequency vs position](https://github.com/suhasAB/WordleOptimizer/blob/main/paper/images/heatmap-curated-words-freq-of-letter-per-pos.png)
 
